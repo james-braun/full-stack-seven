@@ -9,7 +9,7 @@ const App = () => {
     return (
         <BrowserRouter>
             <div className="container">
-                <Route path="/" component={Header} />
+                <Route component={Header} />
                 <Route path="/:name" component={Items} />
             </div>
         </BrowserRouter>
