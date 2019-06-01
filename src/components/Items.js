@@ -10,19 +10,17 @@ class Items extends PureComponent {
         super();
         this.state = {
             resp: null,
-            flag: null
+            prevUrl: null
         };
     }
-    componentDidMount() {
-        this.performSearch(this.props.match.params.name);
-    }
+
     performSearch = (search) => {
         var myhttp = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${Key}&per_page=24&format=json&nojsoncallback=1&text=${search}`;
         axios(myhttp)
             .then(response => {
                 this.setState({
                     resp: response,
-                    flag: this.props.match.url
+                    prevUrl: this.props.match.url
                 });
             })
             .catch(error => {
@@ -30,13 +28,16 @@ class Items extends PureComponent {
             });
     }
     render() {
-        if (this.state.flag !== this.props.match.url) {
-            console.log("I'm inside!");
+        if (this.state.prevUrl !== this.props.match.url) {
             this.performSearch(this.props.match.params.name);
+            return (
+                <Gallery name={'loading...'} response={this.state.resp} />
+            );
+        } else {
+            return (
+                <Gallery name={this.props.match.params.name} response={this.state.resp} />
+            );
         }
-        return (
-            <Gallery name={this.props.match.params.name} response={this.state.resp} />
-        );
     }
 }
 

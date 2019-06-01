@@ -1,7 +1,8 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 import Header from './Header';
 import Items from './Items';
+import Error from './Error';
 
 
 const App = () => {
@@ -10,7 +11,11 @@ const App = () => {
         <BrowserRouter>
             <div className="container">
                 <Route component={Header} />
-                <Route path="/:name" component={Items} />
+                <Route exact path="/" render={() => <Redirect to="/cats" />} />
+                <Switch>
+                    <Route exact path="/:name" component={Items} />
+                    <Route path="/:name/" component={Error} />
+                </Switch>
             </div>
         </BrowserRouter>
             

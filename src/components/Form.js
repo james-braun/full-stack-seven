@@ -5,8 +5,7 @@ const Form = (props) => {
     var searchInput = React.createRef();
     const handleSubmit = (e) => {
         e.preventDefault();
-        let path = `/${searchInput.value}`;
-        props.search(path);
+        props.search(`/${searchInput.value}`);
         e.currentTarget.reset();
     }
     return (
