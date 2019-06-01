@@ -1,7 +1,6 @@
 import React from 'react';
 import Form from './Form';
 import Nav from './Nav';
-//import { NavLink } from 'react-router-dom';
 
 const Header = (props) => {
     const getSearch = (tag) => {
