@@ -3,9 +3,16 @@ import React from 'react';
 const Form = (props) => {
 
     var searchInput = React.createRef();
+
+    // this function controls the handling of input.
     const handleSubmit = (e) => {
         e.preventDefault();
-        props.search(`/${searchInput.value}`);
+
+        // this function calls getSearch() in
+        // Header to put the input in the address bar
+        // because Header has a reference to history
+        // Form does not.
+        props.search(searchInput.value);
         e.currentTarget.reset();
     }
     return (

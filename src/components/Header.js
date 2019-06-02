@@ -3,8 +3,20 @@ import Form from './Form';
 import Nav from './Nav';
 
 const Header = (props) => {
+
+    // this function pushes the input from the form 
+    // element on to the address bar so it can be used
+    // by Route.
     const getSearch = (tag) => {
-        props.history.push(tag);
+
+        // if the input starts with an "/" or multiple
+        // "/"'s push a 404 error route addess to the address bar
+        // rather than have the app crash.
+        const expression = /^\/+/;
+        tag = tag.replace(expression, "Error/404");
+
+        // push input route to the address bar.
+        props.history.push(`/${tag}`);
     }
 
     return (

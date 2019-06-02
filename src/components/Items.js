@@ -9,18 +9,19 @@ class Items extends PureComponent {
     constructor() {
         super();
         this.state = {
-            resp: null,
-            prevUrl: null
+            resp: null,   // holds the data from the axios fetch.
+            prevUrl: null // Holds the previously visited url.
         };
     }
 
     performSearch = (search) => {
+        // fetch data from API
         var myhttp = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${Key}&per_page=24&format=json&nojsoncallback=1&text=${search}`;
         axios(myhttp)
             .then(response => {
                 this.setState({
-                    resp: response,
-                    prevUrl: this.props.match.url
+                    resp: response,  // set to data response.
+                    prevUrl: this.props.match.url // set to current url.
                 });
             })
             .catch(error => {
@@ -28,6 +29,9 @@ class Items extends PureComponent {
             });
     }
     render() {
+        // if the previous url is not the current url then
+        // preform search and display "loading..." and update
+        // the prevUrl otherwise display results.
         if (this.state.prevUrl !== this.props.match.url) {
             this.performSearch(this.props.match.params.name);
             return (
