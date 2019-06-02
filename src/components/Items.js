@@ -29,9 +29,9 @@ class Items extends PureComponent {
             });
     }
     render() {
-        // if the previous url is not the current url then
-        // preform search and display "loading..." and update
-        // the prevUrl otherwise display results.
+        // if the previously rendered url is not the current url being 
+        // rendered then preform a search and display "loading..." and update
+        // the 'prevUrl' in the search function. otherwise display results.
         if (this.state.prevUrl !== this.props.match.url) {
             this.performSearch(this.props.match.params.name);
             return (
