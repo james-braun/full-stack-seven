@@ -35,7 +35,9 @@ class Items extends PureComponent {
         if (this.state.prevUrl !== this.props.match.url) {
             this.performSearch(this.props.match.params.name);
             return (
-                <Gallery name={'loading...'} response={this.state.resp} />
+                <div className="photo-container">
+                    <h2>Loading...</h2>
+                </div>
             );
         } else {
             return (
