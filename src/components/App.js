@@ -14,7 +14,7 @@ const App = () => {
                 <Route exact path="/" render={() => <Redirect to="/cats" />} />
                 <Switch>
                     <Route exact path="/:name" component={Items} />
-                    <Route path="/:name/" component={Error} />
+                    <Route component={Error} />
                 </Switch>
             </div>
         </BrowserRouter>
