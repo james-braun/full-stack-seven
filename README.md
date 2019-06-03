@@ -1,1 +1,1 @@
-# full-stack-seven
+# full-stack-project-seven
