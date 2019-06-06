@@ -2,9 +2,9 @@ import React, { PureComponent } from 'react';
 import Gallery from './Gallery';
 import axios from 'axios';
 import apiKey from './config.js';
+import Loader from './Loader';
 
-
-class Items extends PureComponent {
+class Container extends PureComponent {
 
     constructor() {
         super();
@@ -16,7 +16,7 @@ class Items extends PureComponent {
 
     performSearch = (search) => {
         // fetch data from API
-        var myhttp = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&per_page=24&format=json&nojsoncallback=1&text=${search}`;
+        var myhttp = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&per_page=24&format=json&nojsoncallback=1&text=${search}&tags=${search}`;
         axios(myhttp)
             .then(response => {
                 this.setState({
@@ -35,24 +35,7 @@ class Items extends PureComponent {
         if (this.state.prevUrl !== this.props.match.url) {
             this.performSearch(this.props.match.params.name);
             return (
-                <div className="photo-container">
-                    <h2>loading...</h2>
-                    {/*sk-fading-circle curtesy https://tobiasahlin.com/spinkit/ */}
-                    <div class="sk-fading-circle">
-                        <div class="sk-circle1 sk-circle"></div>
-                        <div class="sk-circle2 sk-circle"></div>
-                        <div class="sk-circle3 sk-circle"></div>
-                        <div class="sk-circle4 sk-circle"></div>
-                        <div class="sk-circle5 sk-circle"></div>
-                        <div class="sk-circle6 sk-circle"></div>
-                        <div class="sk-circle7 sk-circle"></div>
-                        <div class="sk-circle8 sk-circle"></div>
-                        <div class="sk-circle9 sk-circle"></div>
-                        <div class="sk-circle10 sk-circle"></div>
-                        <div class="sk-circle11 sk-circle"></div>
-                        <div class="sk-circle12 sk-circle"></div>
-                    </div>
-                </div>
+                <Loader />
             );
         } else {
             return (
@@ -62,4 +45,4 @@ class Items extends PureComponent {
     }
 }
 
-export default Items;
+export default Container;
