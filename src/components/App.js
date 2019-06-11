@@ -11,7 +11,7 @@ const App = () => {
         <BrowserRouter>
             <div className="container">
                 <Route component={Header} />
-                <Route exact path="/" render={() => <Redirect to="/cats" />} />
+                <Route exact path="/" render={() => <Redirect to="/rainbow" />} />
                 <Switch>
                     <Route exact path="/:name" component={Container} />
                     <Route component={Error} />
